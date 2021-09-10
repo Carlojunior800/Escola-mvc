@@ -1,0 +1,53 @@
+<%- include("../partials/header"); %>
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <div class="row mt-5">
+                <div class="col-6">
+                    <h1>Lista de Professores</h1>
+                </div>
+
+                <div class="col-6 text-right">
+                    <a href="professores/cadastrarProfessor" class="btn btn-primary my-3 text-center">Inserir Professor</a>
+                </div>
+            </div>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Materia</th>
+                        <th>Gosta De</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(resultado == ""){ %>
+                        <tr>
+                            <td colspan="4" class="alert alert-warning">Nenhum Professor está cadastrado!</td>
+                        </tr>
+                    <%}else{ resultado.forEach(function(professor) { %>
+                        <tr>
+                            <td>
+                                <%= professor.nome %>
+                            </td>
+                            <td>
+                                <%= professor.idade %>
+                            </td>
+                            <td>
+                                <%= professor.materia %>
+                            </td>
+                            <td>
+                                <%= professor.gostaDe %>
+                            </td>
+                            <td>
+                                <a href="/professores/editarProfessor/<%= professor._id %>" class="btn btn-sm btn-success">Editar</a>
+                                <a href="/professores/deletarProfessor/<%= professor._id %>" class="btn btn-sm btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                        <% })} %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
